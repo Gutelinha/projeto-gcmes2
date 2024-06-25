@@ -16,7 +16,7 @@ def test_knn_fit(knn):
     X = np.array([[1, 2], [3, 4], [5, 6]])
     y = np.array(['Bom', 'Ruim', 'Bom'])
     knn.fit(X, y)
-    assert (knn._treino_X == X).all()
+    assert (knn._treino_x == X).all()
     assert (knn._treino_y == y).all()
 
 def test_knn_predict(knn):
