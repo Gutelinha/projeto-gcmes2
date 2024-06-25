@@ -4,8 +4,8 @@ import os
 
 class tratamento_de_dados:
     
-    def concatena_atributos(self,Exp,Pub,Con):
-        X = [Exp,Pub,Con]
+    def concatena_atributos(self,Exp,Pub,conexoes):
+        X = [Exp,Pub,conexoes]
         X = np.asmatrix(X)
         return X
     
