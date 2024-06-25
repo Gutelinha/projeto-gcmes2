@@ -11,23 +11,21 @@ class KNN:
     def __init__(self, k = 3):
         self.k = k
 
-    def fit(self, X, y):
-        self.Treino_X = X
-        self.Treino_y = y
+    def fit(self, x_data, y):
+        self._treino_x = x_data
+        self._treino_y = y
 
-    def predict(self, X):
-        previsoes = [self._predict(x) for x in X]
+    def predict(self, x_data):
+        previsoes = [self._predict(x) for x in x_data]
         return previsoes
-    
+
     def _predict(self, x):
-        #calcula distancia
-        dist = [distancia_euclidiana(x, treino_x) for treino_x in self.Treino_X]
-
-        #pega k mais proximos
+        # Calcula a distância euclidiana
+        dist = [distancia_euclidiana(x, treino_x) for treino_x in self._treino_x]
+        # Pega os k mais próximos
         k_indices = np.argsort(dist)[:self.k]
-        k_classes_mais_proximas = [self.Treino_y[i] for i in k_indices]
-
-        #classe majoritaria
+        k_classes_mais_proximas = [self._treino_y[i] for i in k_indices]
+        # Classe majoritária
         majoritaria = Counter(k_classes_mais_proximas).most_common()
         return majoritaria[0][0]
     
