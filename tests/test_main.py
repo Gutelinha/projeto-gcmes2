@@ -11,11 +11,10 @@ def client():
     with app.test_client() as client:
         yield client
 
-
 def test_home_redirect(client):
     response = client.get('/')
     assert response.status_code == 302
-    assert response.headers['Location'] == 'http://localhost/home'
+    assert response.headers['Location'] == url_for('home')
 
 
 def test_home(client):
@@ -25,9 +24,11 @@ def test_home(client):
 
 
 def test_alterar_k(client):
-    response = client.post('/alterar_k', data={'K': '5'})
-    assert response.status_code == 302
-    assert b'Valor de K alterado para: 5' in response.data
+    response = client.post('/alterar_k', data={'K': '5'}, follow_redirects=True)
+    
+    assert response.status_code == 200  # Verifica se o redirecionamento foi seguido com sucesso
+    assert b'Valor de K alterado para: 5' in response.data  # Verifica se a mensagem flash está presente na página inicial
+
 
 
 def test_testar_curriculo_ad(client):
@@ -38,7 +39,9 @@ def test_testar_curriculo_ad(client):
         'AD': 'on'
     })
     assert response.status_code == 302
-    assert 'A qualidade do currículo é' in response.get_data(as_text=True)
+    follow_redirects = client.get('/home')  # Seguir o redirecionamento para /home
+    assert 'A qualidade do currículo é' in follow_redirects.get_data(as_text=True)
+
 
 
 def test_testar_curriculo_knn(client):
@@ -48,7 +51,9 @@ def test_testar_curriculo_knn(client):
         'Conexões': '100'
     })
     assert response.status_code == 302
-    assert 'A qualidade do currículo é' in response.get_data(as_text=True)
+    follow_redirects = client.get('/home')  # Seguir o redirecionamento para /home
+    assert 'A qualidade do currículo é' in follow_redirects.get_data(as_text=True)
+
 
 def test_dados_treino(client):
     response = client.get('/dados_treino')

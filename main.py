@@ -146,5 +146,5 @@ def dados_teste_AD():
     )
 
 
-
-app.run()
+if __name__ == '__main__':
+    app.run()
