@@ -13,7 +13,7 @@ class KNN:
 
     def fit(self, x_data, y):
         self.treino_x = x_data
-        self.Treino_y = y
+        self.treino_y = y
 
     def predict(self, x_data):
         previsoes = [self._predict(x) for x in x_data]
@@ -26,7 +26,7 @@ class KNN:
 
         #pega k mais proximos
         k_indices = np.argsort(dist)[:self.k]
-        k_classes_mais_proximas = [self.Treino_y[i] for i in k_indices]
+        k_classes_mais_proximas = [self.treino_y[i] for i in k_indices]
 
         #classe majoritaria
         majoritaria = Counter(k_classes_mais_proximas).most_common()
