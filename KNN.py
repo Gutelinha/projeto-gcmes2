@@ -11,13 +11,14 @@ class KNN:
     def __init__(self, k = 3):
         self.k = k
 
-    def fit(self, X, y):
-        self.Treino_X = X
+    def fit(self, x_data, y):
+        self.Treino_X = x_data
         self.Treino_y = y
 
-    def predict(self, X):
-        previsoes = [self._predict(x) for x in X]
+    def predict(self, x_data):
+        previsoes = [self._predict(x) for x in x_data]
         return previsoes
+
     
     def _predict(self, x):
         #calcula distancia
