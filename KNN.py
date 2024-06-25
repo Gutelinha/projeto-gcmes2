@@ -12,7 +12,7 @@ class KNN:
         self.k = k
 
     def fit(self, x_data, y):
-        self.Treino_X = x_data
+        self.treino_x = x_data
         self.Treino_y = y
 
     def predict(self, x_data):
@@ -22,7 +22,7 @@ class KNN:
     
     def _predict(self, x):
         #calcula distancia
-        dist = [distancia_euclidiana(x, treino_x) for treino_x in self.Treino_X]
+        dist = [distancia_euclidiana(x, treino_x) for treino_x in self.treino_x]
 
         #pega k mais proximos
         k_indices = np.argsort(dist)[:self.k]
