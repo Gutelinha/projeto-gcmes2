@@ -4,20 +4,20 @@ import os
 
 class tratamento_de_dados:
     
-    def concatena_atributos(self,Exp,Pub,Con):
-        X = [Exp,Pub,Con]
+    def concatena_atributos(self,experiencia,publicacoes,conexoes):
+        X = [experiencia,publicacoes,conexoes]
         X = np.asmatrix(X)
         return X
     
     def get_dados_gerais(self):
         try:
-            Pasta_Raiz = os.getcwd()
-            Pasta_Raiz = os.path.join(Pasta_Raiz, 'dados')
+            pasta_raiz = os.getcwd()
+            pasta_raiz = os.path.join(pasta_raiz, 'dados')
             arquivo = "Dados_Python.xlsx"
-            caminho = os.path.join(Pasta_Raiz, arquivo)
+            caminho = os.path.join(pasta_raiz, arquivo)
 
             if not os.path.exists(caminho):
-                raise FileNotFoundError(f'O arquivo {arquivo} não foi encontrado no diretório {Pasta_Raiz}.')
+                raise FileNotFoundError(f'O arquivo {arquivo} não foi encontrado no diretório {pasta_raiz}.')
 
             dados_gerais = pd.read_excel(caminho, sheet_name='Dados_Python')
             dados_gerais = dados_gerais.drop(['Profissão'], axis=1)
