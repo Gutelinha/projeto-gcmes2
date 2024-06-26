@@ -4,8 +4,11 @@ import os
 
 class tratamento_de_dados:
     
-    def concatena_atributos(self,experiencia,publicacoes,conexoes):
-        X = [experiencia,publicacoes,conexoes]
+    def concatena_atributos(self, experiencia, publicacoes, conexoes):
+        # Verificar se os valores são inteiros
+        if not (isinstance(experiencia, int) and isinstance(publicacoes, int) and isinstance(conexoes, int)):
+            raise ValueError("Todos os atributos devem ser inteiros")
+        X = [experiencia, publicacoes, conexoes]
         X = np.asmatrix(X)
         return X
     
