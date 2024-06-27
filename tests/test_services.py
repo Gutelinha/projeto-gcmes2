@@ -71,3 +71,7 @@ def test_get_dados_teste(tratamento, dados):
     dados_teste = tratamento.get_dados_teste(dados_df, resposta)
     assert isinstance(dados_teste, pd.DataFrame)
     assert list(dados_teste.columns) == ['Razão de Experiência', 'Publicações', 'Conexões', 'Qualidade', 'Valor gerado']
+
+def test_concatena_atributos_valores_invalidos(tratamento):
+    with pytest.raises(ValueError):
+        tratamento.concatena_atributos('a', 'b', 'c')

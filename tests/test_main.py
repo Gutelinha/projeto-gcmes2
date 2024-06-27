@@ -89,3 +89,13 @@ def test_testar_curriculo_valores_invalidos(client):
     follow_redirects = client.get('/home')
     assert 'Erro ao formatar o texto' in follow_redirects.get_data(as_text=True)
 
+def test_testar_curriculo_valores_vazios(client):
+    response = client.post('/testar_curriculo', data={
+        'Razão de Experiência': '',
+        'Publicações': '',
+        'Conexões': '',
+        'AD': 'on'
+    })
+    assert response.status_code == 302
+    follow_redirects = client.get('/home')
+    assert 'Erro ao formatar o texto' in follow_redirects.get_data(as_text=True)
