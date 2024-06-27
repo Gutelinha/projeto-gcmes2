@@ -71,3 +71,21 @@ def test_dados_teste_ad(client):
     response = client.get('/dados_teste_AD')
     assert response.status_code == 200
     assert b'Valor de K' in response.data
+    
+def test_dados_teste_sem_dados(client):
+    response = client.get('/dados_teste')
+    assert response.status_code == 200
+    assert b'Valor de K' in response.data
+    assert b'Taxa de acertos' in response.data
+
+def test_testar_curriculo_valores_invalidos(client):
+    response = client.post('/testar_curriculo', data={
+        'Razão de Experiência': 'abc',
+        'Publicações': '10',
+        'Conexões': '100',
+        'AD': 'on'
+    })
+    assert response.status_code == 302
+    follow_redirects = client.get('/home')
+    assert 'Erro ao formatar o texto' in follow_redirects.get_data(as_text=True)
+
