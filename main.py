@@ -74,7 +74,7 @@ def alterar_k():
     try:
         k = request.form['K']
         
-        X = clf.k = int (k)
+        clf.k = int (k)
         clf.fit(treino_x,treino_y)
         clf.set_previsao_precisao(teste_x,teste_y)
         print(clf.precisao)
@@ -136,7 +136,7 @@ def dados_teste():
     )
 
 @app.route('/dados_teste_AD')
-def dados_teste_AD():
+def dados_teste_ad():
     r_dados = action.get_dados_teste(action.get_dados(teste_x,teste_y),prec)
     return render_template(
         'dados_teste_AD.html',
