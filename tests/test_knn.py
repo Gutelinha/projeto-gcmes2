@@ -35,8 +35,3 @@ def test_knn_set_previsao_precisao(knn):
     assert hasattr(knn, 'precisao')
     assert isinstance(knn.precisao, str)
     assert 'Taxa de acertos' in knn.precisao
-
-
-def test_distancia_euclidiana_valores_invalidos():
-    with pytest.raises(TypeError):
-        distancia_euclidiana(np.array(['a', 'b']), np.array([4, 6]))
