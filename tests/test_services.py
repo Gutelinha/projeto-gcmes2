@@ -75,3 +75,8 @@ def test_get_dados_teste(tratamento, dados):
 def test_concatena_atributos_valores_invalidos(tratamento):
     with pytest.raises(ValueError):
         tratamento.concatena_atributos('a', 'b', 'c')
+    
+def test_get_dados_gerais_arquivo_nao_existe(mocker, tratamento):
+    mocker.patch('os.path.exists', return_value=False)
+    dados = tratamento.get_dados_gerais()
+    assert dados is None
