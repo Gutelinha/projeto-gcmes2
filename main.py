@@ -74,7 +74,7 @@ def alterar_k():
     try:
         k = request.form['K']
         
-        X = clf.k = int (k)
+        clf.k = int (k)
         clf.fit(treino_x,treino_y)
         clf.set_previsao_precisao(teste_x,teste_y)
         print(clf.precisao)
