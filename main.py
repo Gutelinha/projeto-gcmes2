@@ -136,7 +136,7 @@ def dados_teste():
     )
 
 @app.route('/dados_teste_AD')
-def dados_teste_AD():
+def dados_teste_ad():
     r_dados = action.get_dados_teste(action.get_dados(teste_x,teste_y),prec)
     return render_template(
         'dados_teste_AD.html',
