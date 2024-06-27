@@ -39,3 +39,10 @@ def test_knn_set_previsao_precisao(knn):
 def test_distancia_euclidiana_valores_invalidos():
     with pytest.raises(TypeError):
         distancia_euclidiana(np.array(['a', 'b']), np.array([4, 6]))
+
+def test_knn_predict_empate(knn):
+    X = np.array([[1, 2], [3, 4], [5, 6]])
+    y = np.array(['Bom', 'Ruim', 'Bom'])
+    knn.fit(X, y)
+    pred = knn._predict(np.array([2, 3]))
+    assert pred in ['Bom', 'Ruim']

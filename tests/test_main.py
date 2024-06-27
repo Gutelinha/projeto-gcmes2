@@ -93,3 +93,14 @@ def test_alterar_k_valor_invalido(client):
     response = client.post('/alterar_k', data={'K': 'abc'}, follow_redirects=True)
     assert response.status_code == 200
     assert b'Erro ao formatar o texto' in response.data
+    
+def test_testar_curriculo_valores_vazios(client):
+    response = client.post('/testar_curriculo', data={
+        'Razão de Experiência': '',
+        'Publicações': '',
+        'Conexões': '',
+        'AD': 'on'
+    })
+    assert response.status_code == 302
+    follow_redirects = client.get('/home')
+    assert 'Erro ao formatar o texto' in follow_redirects.get_data(as_text=True)
